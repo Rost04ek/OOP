@@ -10,13 +10,13 @@ int main() {
     }
 
     int hryvnias, quantity;
-    short int kopecks;
+    short int kopecks, totalKopecks;
     Price total = {0, 0};
 
     while (file >> hryvnias >> kopecks >> quantity) {
         Price itemPrice = {hryvnias, kopecks};
         int totalKopecks = (itemPrice.hryvnias * 100 + itemPrice.kopecks) * quantity;
-        Price totalItemPrice = {totalKopecks / 100, static_cast<short int>(totalKopecks % 100)};
+        Price totalItemPrice = {totalKopecks / 100, (totalKopecks % 100)};
         AddPrice(total, totalItemPrice);
     }
 
