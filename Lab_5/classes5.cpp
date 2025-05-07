@@ -1,7 +1,9 @@
 #include "classes5.h"
 
 // Реалізація класу Plant
-Plant::Plant() : type(""), height(0), color("") {}
+Plant::Plant() : type(""), height(0), color("") {
+    std::cout << "Конструктор Plant викликано." << std::endl;
+}
 
 Plant::~Plant() {
     std::cout << "Деструктор Plant викликано." << std::endl;
@@ -67,31 +69,32 @@ void Tree::PrintInfo() const {
     std::cout << "Дерево: Тип: " << type << ", Висота: " << height << " см, Колір: " << color << "." << std::endl;
 }
 
-// Реалізація класу FruitTree
-FruitTree::FruitTree(const std::string& fruit_type) : fruitType(fruit_type) {
-    SetType("Фруктове дерево");
-    std::cout << "Конструктор FruitTree викликано." << std::endl;
+// Реалізація класу BlossomTree
+BlossomTree::BlossomTree() {
+    SetType("Квітуче дерево");
+    SetHeight(400);
+    SetColor("рожевий");
+    std::cout << "Конструктор BlossomTree викликано." << std::endl;
 }
 
-FruitTree::FruitTree() : fruitType("") {}
-
-FruitTree::~FruitTree() {
-    std::cout << "Деструктор FruitTree викликано." << std::endl;
+BlossomTree::~BlossomTree() {
+    std::cout << "Деструктор BlossomTree викликано." << std::endl;
 }
 
-void FruitTree::SetFruitType(const std::string& fruit_type) {
-    fruitType = fruit_type;
+void BlossomTree::Describe() const {
+    std::cout << "Це квітуче дерево з красивими квітами." << std::endl;
 }
 
-void FruitTree::PrintInfo() const {
-    std::cout << "Фруктове дерево: Тип: " << type << ", Висота: " << height << " см, Колір: " << color << ", Фрукти: " << fruitType << "." << std::endl;
+void BlossomTree::PrintInfo() const {
+    std::cout << "Квітуче дерево: Тип: " << type << ", Висота: " << height << " см, Колір: " << color << "." << std::endl;
 }
 
 // Реалізація класу HybridPlant
-HybridPlant::HybridPlant(const std::string& name, const std::string& fruitType, const std::string& color)
-    : Plant(), Flower(), FruitTree(fruitType) {
+HybridPlant::HybridPlant(const std::string& name, const std::string& color, int height)
+    : Plant(), Flower(), Tree(), BlossomTree() {
     hybridName = name;
     SetColor(color);
+    SetHeight(height);
     std::cout << "Конструктор HybridPlant викликано." << std::endl;
 }
 
@@ -105,6 +108,6 @@ void HybridPlant::Describe() const {
 
 void HybridPlant::PrintInfo() const {
     std::cout << "Гібридна рослина: Назва: " << hybridName
-              << ", Тип фрукта: " << fruitType
-              << ", Колір: " << color << "." << std::endl;
+              << ", Висота: " << height
+              << " см, Колір: " << color << "." << std::endl;
 }
