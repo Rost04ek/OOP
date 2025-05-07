@@ -34,24 +34,20 @@ public:
     void PrintInfo() const override;
 };
 
-class FruitTree : public virtual Tree {
-protected:
-    std::string fruitType;
-
+class BlossomTree : public virtual Plant {
 public:
-    FruitTree(const std::string& fruit_type);
-    FruitTree();
-    virtual ~FruitTree();
-    void SetFruitType(const std::string& fruit_type);
+    BlossomTree();
+    virtual ~BlossomTree();
+    void Describe() const override;
     void PrintInfo() const override;
 };
 
-class HybridPlant : public virtual Flower, public virtual FruitTree {
+class HybridPlant : public virtual Flower, public virtual Tree, public virtual BlossomTree {
 private:
     std::string hybridName;
 
 public:
-    HybridPlant(const std::string& name, const std::string& fruitType, const std::string& color);
+    HybridPlant(const std::string& name, const std::string& color, int height);
     virtual ~HybridPlant();
     void Describe() const override;
     void PrintInfo() const override;
